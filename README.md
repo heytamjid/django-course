@@ -1,2 +1,2 @@
-# django-course
+# django-course projects
 from Phitron
