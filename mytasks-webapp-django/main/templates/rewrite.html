@@ -1,0 +1,24 @@
+{% extends 'templates/base.html' %}
+{% block body %}
+<h2>Edit Task</h2>
+<p>{{ ct.title }} : {{ct.description}} </p>
+{% if ct.isCompleted is False %}
+<form method="post" action="{% url 'editbackend' ct.id %}">
+    {% csrf_token %}
+    <input type="text", name="title", placeholder="Add Task Title", value="{{ct.title}}">
+    <input type="text", name="description", placeholder="Add Task Description", value="{{ct.description}}">
+    <input type="hidden" name="isCompleted" value="False">
+    <input type="submit">
+</form>
+{% endif %}
+{% if ct.isCompleted is True %}
+<form method="post" action="{% url 'editbackendforcompleted' ct.id %}">
+    {% csrf_token %}
+    <input type="text", name="title", placeholder="Add Task Title", value="{{ct.title}}">
+    <input type="text", name="description", placeholder="Add Task Description", value="{{ct.description}}">
+    <input type="hidden" name="isCompleted" value="False">
+    <input type="submit">
+</form>
+{% endif %}
+
+{% endblock %}

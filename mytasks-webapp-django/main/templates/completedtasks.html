@@ -1,0 +1,34 @@
+{% extends 'templates/base.html' %}
+{% block body %}
+<h2>All Your Completed To-Dos</h2>
+<ul>
+    {% for item in alltasksins %}
+    <li> 
+        <b>{{item.title}}</b> : {{item.description}}  (Completed) 
+
+
+        <form method="post" action="{% url 'incompleteit' item.id %}" style="display: inline;">  
+            {% csrf_token %}
+            <button type="submit">Mark as Incomplete</button>
+        </form>
+
+        <form method="post" action="{% url 'edit' item.id %}" style="display: inline;">
+            {% csrf_token %}
+            <button type="submit">Edit</button>
+        </form>
+    
+
+        <form method="post" action="{% url 'deletecompleted' item.id %}" style="display: inline;">        
+        {% csrf_token %}
+        <button type="submit">Delete</button>
+    </form>
+
+    
+    
+
+</li>
+
+    
+    {% endfor %}
+</ul>
+{% endblock %}

@@ -1,0 +1,6 @@
+{% extends 'templates/base.html' %}
+{% block body %}
+<p><a href = "{% url "alltasks" %}" ">All Todos</a></p>
+<p><a href = "{% url "completedtasks" %}" >Completed Tasks</a></p>
+<p><a href = "{% url "add" %}" >Add A New Task</a></p>
+{% endblock %}

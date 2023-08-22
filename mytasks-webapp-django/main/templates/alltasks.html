@@ -1,0 +1,27 @@
+{% extends 'templates/base.html' %}
+{% block body %}
+<h2>All Your Pending To-Dos</h2>
+<ul>
+    {% for item in alltasksins %}
+    <li> <b>{{item.title}}</b> : {{item.description}}  (Incomplete)
+        <form method="post" action="{% url 'edit' item.id %}" style="display: inline;">
+            {% csrf_token %}
+            <button type="submit">Edit</button>
+        </form>
+
+        <form method="post" action="{% url 'complete' item.id %}" style="display: inline;">
+            {% csrf_token %}
+            <button type="submit">Complete</button>
+        </form>
+
+        <form method="post" action="{% url 'delete' item.id %}" style="display: inline;">
+            {% csrf_token %}
+            <button type="submit">Delete</button>
+        </form>
+    
+    </li>
+    {% endfor %}
+</ul>
+
+<p><a href="{% url "add" %}">Add Another Task</a></p>
+{% endblock %}
